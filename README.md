@@ -21,7 +21,7 @@ sudo bash boot-windows/boot-windows.sh
 You can add this script as an app "Boot Windows" in "System" category using
 
 ```
-echo "[Desktop Entry]\nName=Boot Windows\nExec=konsole -e sudo bash $(pwd)/boot-windows/boot-windows.sh\nIcon=system-run\nType=Application\nCategories=System;" > ~/.local/share/applications/boot-windows.desktop
+echo -e "[Desktop Entry]\nName=Boot Windows\nExec=pkexec env DISPLAY=\$DISPLAY XAUTHORITY=\$XAUTHORITY konsole -e bash $(pwd)/boot-windows/boot-windows.sh\nIcon=system-run\nType=Application\nCategories=System;" > ~/.local/share/applications/boot-windows.desktop
 ```
 
 ## Bash alias `boot-windows`
