@@ -16,6 +16,14 @@ git clone https://github.com/Mathtin/boot-windows
 sudo bash boot-windows/boot-windows.sh
 ```
 
+## KDE Shortcut
+
+You can add this script as an app "Boot Windows" in "System" category using
+
+```
+echo "[Desktop Entry]\nName=Boot Windows\nExec=konsole -e sudo bash $(pwd)/boot-windows/boot-windows.sh\nIcon=system-run\nType=Application\nCategories=System;" > ~/.local/share/applications/boot-windows.desktop
+```
+
 ## Bash alias `boot-windows`
 
 Run this to add alias to your bash-rc file (`.bashrc` in home directory)
