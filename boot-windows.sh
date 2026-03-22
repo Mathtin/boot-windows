@@ -7,19 +7,6 @@ if [ "$EUID" -ne 0 ]
   exit
 fi
 
-read -p "Are you sure? (Y/y): " -n 1 -r
-echo
-
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    #echo "User agreed"
-    true
-else
-    echo "Skipped booting windows"
-    exit
-fi
-
-echo "Detecting windows"
-
 WIN_LINE=$(efibootmgr | grep -i "Windows Boot Manager" || true)
 
 if [[ -z "$WIN_LINE" ]]; then
@@ -35,6 +22,17 @@ if [[ -z "$WIN_BOOTNUM" ]]; then
 fi
 
 echo "Found Windows Boot Manager at Boot$WIN_BOOTNUM"
+echo "Preparing for jump"
+read -p "Are you sure? (Y/y): " -n 1 -r
+echo
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    #echo "User agreed"
+    true
+else
+    echo "Skipped booting windows"
+    exit
+fi
 
 echo "Setting windows as one-time boot"
 efibootmgr -n "$WIN_BOOTNUM"
